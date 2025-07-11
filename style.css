@@ -426,7 +426,9 @@ button {
     width: 28%;
   }
   .playbar {
-
+    margin-left: 4.5px;
+    border-radius: 10px;
+height: 25%;
     position: absolute;
     bottom: 0;
     opacity: 1;
