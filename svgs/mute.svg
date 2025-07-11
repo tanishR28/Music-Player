@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+  <!-- Speaker base -->
+  <path fill="white" d="M3 9v6h4l5 5V4L7 9H3z" />
+
+  <!-- Bigger cross (X) -->
+  <line x1="16" y1="8" x2="22" y2="14" stroke="white" stroke-width="2"/>
+  <line x1="22" y1="8" x2="16" y2="14" stroke="white" stroke-width="2"/>
+</svg>

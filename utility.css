@@ -1,0 +1,29 @@
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.border {
+  border: 2px solid black;
+  margin: 3px;
+}
+.card .Title {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+.Desc {
+  font-weight: 200;
+  font-size: small;
+  margin-bottom: 4px;
+}
+@media (max-width:1024px)
+{
+  .border {
+  border: 0px solid black;
+  margin: 0px;
+}
+}

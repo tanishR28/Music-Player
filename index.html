@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanishspotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
+</head>
+
+<body>
+    <div class="container flex bg-black">
+        <div class="left border">
+            <div class="home bg-gray rounded-border">
+                <div class="leftSidebarcross">
+                    <div class="logo invert"><img src="svgs/Spotify-Black-Logo.wine.svg" alt="logo"></div>
+                    <div class="cancelSidebar">
+                        <img src="svgs/cross.svg" alt="">
+                    </div>
+                </div>
+                <ul class="invert">
+                    <li><img src="svgs/home.svg" alt="home">Home</li>
+                    <li><img src="svgs/search.svg" alt="search">Search</li>
+                </ul>
+            </div>
+            <div class="library bg-gray rounded-border">
+                <div class="heading">
+                    <div>Your Library</div>
+                    <div class="addplus"><img class="invert" src="svgs/addlogo.svg" alt="addplaylist"></div>
+                </div>
+                <div class="libcontent">
+                    <ul>
+                        <!-- <li>Hello world</li>
+                        <li>Hello world</li> -->
+                    </ul>
+                </div>
+                <div class="libfooterblock">
+
+                    <div class="libfooter">
+                        <div><a href="https://www.spotify.com/in-en/legal/">Legal</a></div>
+                        <div><a href="https://www.spotify.com/in-en/safetyandprivacy/">Safety & Privacy Center</a></div>
+                        <div><a href="https://www.spotify.com/in-en/legal/privacy-policy/">Privacy Policy</a></div>
+                        <div><a href="https://www.spotify.com/in-en/legal/cookies-policy/">Cookies</a></div>
+                        <div><a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">About Ads</a></div>
+                        <div><a href="https://www.spotify.com/in-en/accessibility/">Accessibility</a></div>
+                    </div>
+                </div>
+            
+            </div>
+             <div class="opaqueScreen">
+                
+            </div>
+        </div>
+        <div class="right border bg-gray rounded-border">
+           
+            <div class="rightheader flex">
+                <div class="arrows">
+                    <img id="menuSide" src="svgs/menu.svg" alt="">
+                    <img id="prevPlaylist" src="svgs/left-arrow-backup-2-svgrepo-com.svg" alt="left">
+                    <img id="nextPlaylist" src="svgs/left-arrow-backup-2-svgrepo-com.svg" alt="right">
+                </div>
+                <div class="buttons">
+                    <button class="signupbtn">Sign up</button>
+                    <button class="loginbtn">Login</button>
+                </div>
+            </div>
+            <div class="spotifyPlaylist">
+                <h1 id="headPlay">Your Playlists</h1>
+                <div class="playlistContainer">
+                    
+                   
+                </div>
+            </div>
+            <div class="playbar">
+                <div class="songAboveBar">
+                    <div class="songdetails">Start Listening
+                    </div>
+                    <div class="songbuttons">
+                        <img id="prevMusic" src="svgs/previous-svgrepo-com.svg" alt="play">
+                        <img id="play" src="svgs/play-button-svgrepo-com.svg" alt="play">
+                        <img id="nextMusic" src="svgs/previous-svgrepo-com.svg" alt="play">
+                    </div>
+                    <div class="songtime">
+                        <div class="songDuration">
+                            --:--/--:--
+                        </div>
+                        <div class="volumeRocker">
+                            <img src="svgs/volume.svg" alt="volume" id="volButton">
+                            <input type="range" name="volumeControl" id="volCn">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="songtimebar">
+                    <div class="timetrack">
+                        <div class="timetrail"></div>
+                        <div class="timeinstant"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
