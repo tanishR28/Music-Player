@@ -15,48 +15,45 @@ function formatTime(seconds) {
   return `${paddedMins}:${paddedSecs}`;
 }
 async function getAlbums() {
-  let obj = await fetch(`musics/`);
-  let response = await obj.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let anchors = Array.from(div.getElementsByTagName("a"));
-  let playlistContainer = document.querySelector(".playlistContainer");
-  for (let index = 0; index < anchors.length; index++) {
-    const element = anchors[index];
-    let folder;
-    if (element.href.includes("/musics/")) {
-      folder = element.href.split("/").slice(-2)[0];
-      allfolders.push(folder);
-      console.log(folder + " recieved");
-      let obj1 = await fetch(`musics/${folder}/info.json`); //json reader
-      let response1 = await obj1.json();
+  let obj = await fetch(`musics/data.json`);
+  let response = await obj.json();
+  let folders = response.folders;
 
-      playlistContainer.innerHTML += `
-     <div class="card" data-folder="${folder}">
-                        <div class="play"><img src="svgs/play.svg" alt="play"></div>
-                        <div class="image"><img src="/musics/${folder}/${response1.imgurl}" alt="thumbnail">
-                        </div>
-                        <div class="Title">${response1.title}</div>
-                        <div class="Desc">${response1.desc}</div>
-                    </div>
+  let playlistContainer = document.querySelector(".playlistContainer");
+
+  for (let folder of folders) {
+    allfolders.push(folder);
+    console.log(folder + " received");
+
+    let obj1 = await fetch(`musics/${folder}/info.json`);
+    let response1 = await obj1.json();
+
+    playlistContainer.innerHTML += `
+      <div class="card" data-folder="${folder}">
+        <div class="play"><img src="svgs/play.svg" alt="play"></div>
+        <div class="image"><img src="musics/${folder}/${response1.imgurl}" alt="thumbnail">
+        </div>
+        <div class="Title">${response1.title}</div>
+        <div class="Desc">${response1.desc}</div>
+      </div>
     `;
-    }
   }
-  //load playlist when card is load
+
+  // load playlists (same as before)
   Array.from(document.getElementsByClassName("card")).forEach((item) => {
     item.addEventListener("click", async (e) => {
       let folderName = e.currentTarget.dataset.folder;
       console.log(folderName + " folder opened");
       currentFolderIndex = allfolders.indexOf(folderName);
-      console.log(currentFolderIndex);
 
       await getSongs(`musics/${folderName}`);
-      loadMusic(songs[0]); //songs array gets updated each time u click on another album
+      loadMusic(songs[0]);
       playMusic(songs[0]);
       document.querySelector(".left").style.left = "0%";
     });
   });
 }
+
 async function getSongs(folder) {
   curFolder = folder;
   let obj = await fetch(`${curFolder}/`);
