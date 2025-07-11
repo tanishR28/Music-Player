@@ -53,55 +53,32 @@ async function getAlbums() {
     });
   });
 }
-
 async function getSongs(folder) {
   curFolder = folder;
-  let obj = await fetch(`${curFolder}/`);
-  let response = await obj.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let as = div.getElementsByTagName("a");
-  songs = [];
-  for (let i = 0; i < as.length; i++) {
-    if (as[i].href.endsWith(".mp3")) {
-      songs.push(as[i].href.split(`/${curFolder}/`)[1]);
-    }
-  }
-  //   console.log(as[0].href);
+  let obj = await fetch(`${curFolder}/songs.json`);
+  let response = await obj.json();
+  songs = response.songs;
 
-  //or let songUL = document.querySelector(".libcontent ul");
-  //show all the songs in playlist
-
-  let songUL = document
-    .querySelector(".libcontent")
-    .getElementsByTagName("ul")[0];
+  let songUL = document.querySelector(".libcontent").getElementsByTagName("ul")[0];
   songUL.innerHTML = " ";
   for (const music of songs) {
-    songUL.innerHTML =
-      songUL.innerHTML +
-      `
-        <li class="songlistCard">
-                            <div class="songThumb"><img src="${curFolder}/thumbnail.jpg" alt="thumbnail"></div>
-                            <div class="songinfo">
-                                <div class="songName">${
-                                  music.replaceAll("%20", " ").split("-")[0]
-                                }</div>
-                                <div class="songAuthor">${music
-                                  .replaceAll("%20", " ")
-                                  .split("-")[1]
-                                  .replace(".mp3", "")}</div>
-                            </div>
-                            <div class="songPlay">
-                                <img src="svgs/play-button-svgrepo-com.svg" alt="">
-                            </div>
-                        </li>
-                        `;
+    songUL.innerHTML += `
+      <li class="songlistCard">
+        <div class="songThumb"><img src="${curFolder}/thumbnail.jpg" alt="thumbnail"></div>
+        <div class="songinfo">
+          <div class="songName">${music.replaceAll("%20", " ").split("-")[0]}</div>
+          <div class="songAuthor">${music.replaceAll("%20", " ").split("-")[1].replace(".mp3", "")}</div>
+        </div>
+        <div class="songPlay">
+          <img src="svgs/play-button-svgrepo-com.svg" alt="">
+        </div>
+      </li>
+    `;
   }
-  let allLi = document.querySelector(".libcontent").getElementsByTagName("li");
 
-  //to retrieve each song address to give it to play fn respectively
+  let allLi = document.querySelector(".libcontent").getElementsByTagName("li");
   Array.from(allLi).forEach((e) => {
-    e.querySelector(".songPlay").addEventListener("click", (Element) => {
+    e.querySelector(".songPlay").addEventListener("click", () => {
       let songAdd =
         e.querySelector(".songName").innerHTML +
         "-" +
@@ -113,6 +90,7 @@ async function getSongs(folder) {
     });
   });
 }
+
 let currentAud = new Audio();
 
 const loadMusic = (track) => {
